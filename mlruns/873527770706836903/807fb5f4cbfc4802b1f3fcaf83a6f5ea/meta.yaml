@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/keishoomori/github/MBDS/mental-health-ml/mlruns/873527770706836903/807fb5f4cbfc4802b1f3fcaf83a6f5ea/artifacts
+end_time: 1762845737287
+entry_point_name: ''
+experiment_id: '873527770706836903'
+lifecycle_stage: active
+run_id: 807fb5f4cbfc4802b1f3fcaf83a6f5ea
+run_name: adorable-mole-65
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762845736492
+status: 3
+tags: []
+user_id: keishoomori

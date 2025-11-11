@@ -1,0 +1,111 @@
+Age
+Gender_Female
+Gender_Male
+Gender_Non-binary
+Gender_Other
+Country_Australia
+Country_Austria
+Country_Bahamas, The
+Country_Belgium
+Country_Bosnia and Herzegovina
+Country_Brazil
+Country_Bulgaria
+Country_Canada
+Country_China
+Country_Colombia
+Country_Costa Rica
+Country_Croatia
+Country_Denmark
+Country_Finland
+Country_France
+Country_Georgia
+Country_Germany
+Country_Greece
+Country_India
+Country_Ireland
+Country_Israel
+Country_Italy
+Country_Japan
+Country_Latvia
+Country_Mexico
+Country_Moldova
+Country_Netherlands
+Country_New Zealand
+Country_Norway
+Country_Philippines
+Country_Poland
+Country_Portugal
+Country_Romania
+Country_Russia
+Country_Singapore
+Country_Slovenia
+Country_South Africa
+Country_Spain
+Country_Sweden
+Country_Switzerland
+Country_Thailand
+Country_United Kingdom
+Country_United States
+Country_Uruguay
+self_employed_No
+self_employed_Yes
+family_history_No
+family_history_Yes
+work_interfere_Never
+work_interfere_Often
+work_interfere_Rarely
+work_interfere_Sometimes
+work_interfere_Unknown
+no_employees_1-5
+no_employees_100-500
+no_employees_26-100
+no_employees_500-1000
+no_employees_6-25
+no_employees_More than 1000
+remote_work_No
+remote_work_Yes
+tech_company_No
+tech_company_Yes
+benefits_Don't know
+benefits_No
+benefits_Yes
+care_options_No
+care_options_Not sure
+care_options_Yes
+wellness_program_Don't know
+wellness_program_No
+wellness_program_Yes
+seek_help_Don't know
+seek_help_No
+seek_help_Yes
+anonymity_Don't know
+anonymity_No
+anonymity_Yes
+leave_Don't know
+leave_Somewhat difficult
+leave_Somewhat easy
+leave_Very difficult
+leave_Very easy
+mental_health_consequence_Maybe
+mental_health_consequence_No
+mental_health_consequence_Yes
+phys_health_consequence_Maybe
+phys_health_consequence_No
+phys_health_consequence_Yes
+coworkers_No
+coworkers_Some of them
+coworkers_Yes
+supervisor_No
+supervisor_Some of them
+supervisor_Yes
+mental_health_interview_Maybe
+mental_health_interview_No
+mental_health_interview_Yes
+phys_health_interview_Maybe
+phys_health_interview_No
+phys_health_interview_Yes
+mental_vs_physical_Don't know
+mental_vs_physical_No
+mental_vs_physical_Yes
+obs_consequence_No
+obs_consequence_Yes

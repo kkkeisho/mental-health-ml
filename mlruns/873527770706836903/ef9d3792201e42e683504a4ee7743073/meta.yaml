@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/keishoomori/github/MBDS/mental-health-ml/mlruns/873527770706836903/ef9d3792201e42e683504a4ee7743073/artifacts
+end_time: 1762845730249
+entry_point_name: ''
+experiment_id: '873527770706836903'
+lifecycle_stage: active
+run_id: ef9d3792201e42e683504a4ee7743073
+run_name: selective-ox-895
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762845726771
+status: 3
+tags: []
+user_id: keishoomori
