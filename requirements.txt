@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+pandas
+scikit-learn
+joblib
+pydantic
+pytest
+mlflow
+flake8
+httpx  # APIテスト用（後で使う）
