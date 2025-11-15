@@ -11,8 +11,7 @@ from sklearn.impute import SimpleImputer
 # 1. Clean and validate Age column
 # ===========================================================
 def clean_age(age):
-    """
-    Convert age to an integer, and set invalid ages (<15 or >100) to NaN.
+    """Convert age to an integer, and set invalid ages (<15 or >100) to NaN.
     The dataset contains unrealistic values (e.g., -2, 322), so we clamp to a reasonable range.
     """
     try:
@@ -29,15 +28,13 @@ def clean_age(age):
 # 2. Normalize Gender categories
 # ===========================================================
 def normalize_gender(x):
-    """
-    Consolidate messy and diverse gender labels into standardized categories:
+    """Consolidate messy and diverse gender labels into standardized categories:
     Male, Female, Trans, Non-binary, Other.
     """
     if not isinstance(x, str):
         return "Other"
 
     s = x.strip().lower()
-
     male_tokens = ["m", "male", "man", "cis male", "cis-male", "msle", "mail"]
     female_tokens = ["f", "female", "woman", "cis female", "cis-female"]
 
@@ -57,16 +54,14 @@ def normalize_gender(x):
 # 3. Main preprocessing function
 # ===========================================================
 def preprocess_raw_df(df: pd.DataFrame):
-    """
-    Clean and prepare the raw survey dataframe.
+    """Clean and prepare the raw survey dataframe.
 
     Returns:
-        X                -> Cleaned feature dataframe
-        y                -> Binary target (treatment: yes=1, no=0)
-        preprocessor    -> ColumnTransformer containing imputation,
-                           scaling, and one-hot encoding steps
+        X -> Cleaned feature dataframe
+        y -> Binary target (treatment: yes=1, no=0)
+        preprocessor -> ColumnTransformer containing imputation,
+                        scaling, and one-hot encoding steps
     """
-
     df = df.copy()
 
     # -------------------------------------------------------
@@ -74,20 +69,16 @@ def preprocess_raw_df(df: pd.DataFrame):
     # -------------------------------------------------------
     to_drop = []
 
-    # 'comments' has ~87% missing → not useful
     if "comments" in df.columns:
         to_drop.append("comments")
 
-    # 'state' has ~40% missing → remove for simplicity
     if "state" in df.columns:
         to_drop.append("state")
 
-    # Timestamp does not contain predictive value
     if "Timestamp" in df.columns:
         to_drop.append("Timestamp")
 
     df = df.drop(columns=to_drop, errors="ignore")
-
 
     # -------------------------------------------------------
     # 3.2 Clean Age values
@@ -95,13 +86,11 @@ def preprocess_raw_df(df: pd.DataFrame):
     if "Age" in df.columns:
         df["Age"] = df["Age"].apply(clean_age)
 
-
     # -------------------------------------------------------
     # 3.3 Normalize Gender values
     # -------------------------------------------------------
     if "Gender" in df.columns:
         df["Gender"] = df["Gender"].apply(normalize_gender)
-
 
     # -------------------------------------------------------
     # 3.4 Fill missing values for specific columns
@@ -114,18 +103,14 @@ def preprocess_raw_df(df: pd.DataFrame):
     if "work_interfere" in df.columns:
         df["work_interfere"] = df["work_interfere"].fillna("Unknown")
 
-
     # -------------------------------------------------------
-    # 3.5 Create target variable (treatment yes/no)
+    # 3.5 Create target variable
     # -------------------------------------------------------
     if "treatment" not in df.columns:
         raise ValueError("ERROR: Column 'treatment' not found in dataframe.")
 
-    # Convert yes/no to binary 1/0
     y = (df["treatment"].astype(str).str.strip().str.lower() == "yes").astype(int)
-
     X = df.drop(columns=["treatment"])
-
 
     # -------------------------------------------------------
     # 3.6 Identify categorical vs numerical columns
@@ -133,26 +118,22 @@ def preprocess_raw_df(df: pd.DataFrame):
     numeric_cols = [c for c in X.columns if pd.api.types.is_numeric_dtype(X[c])]
     categorical_cols = [c for c in X.columns if c not in numeric_cols]
 
-
     # -------------------------------------------------------
-    # 3.7 Build preprocessing pipeline (ColumnTransformer)
+    # 3.7 Build preprocessing pipeline
     # -------------------------------------------------------
-    numeric_transformer = Pipeline(steps=[
+    numeric_transformer = Pipeline([
         ("imputer", SimpleImputer(strategy="median")),
         ("scaler", StandardScaler()),
     ])
 
-    categorical_transformer = Pipeline(steps=[
+    categorical_transformer = Pipeline([
         ("imputer", SimpleImputer(strategy="most_frequent")),
         ("onehot", OneHotEncoder(handle_unknown="ignore")),
-
     ])
 
-    preprocessor = ColumnTransformer(
-        transformers=[
-            ("num", numeric_transformer, numeric_cols),
-            ("cat", categorical_transformer, categorical_cols),
-        ]
-    )
+    preprocessor = ColumnTransformer([
+        ("num", numeric_transformer, numeric_cols),
+        ("cat", categorical_transformer, categorical_cols),
+    ])
 
     return X, y, preprocessor

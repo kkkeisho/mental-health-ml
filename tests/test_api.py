@@ -38,7 +38,6 @@ def test_predict():
         "obs_consequence": "No"
         }
 
-
     resp = client.post("/predict", json=payload)
     assert resp.status_code == 200
     body = resp.json()
