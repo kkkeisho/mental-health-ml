@@ -15,30 +15,38 @@ MODEL_PATH = "models/model.pkl"
 model = joblib.load(MODEL_PATH)
 
 
-@app.get("/health")
-def health():
-    return {"status": "ok"}
+@app.get("/")
+def root():
+    # Test expects this message to contain the phrase
+    # "Mental Health Prediction API"
+    return {"message": "Mental Health Prediction API is running"}
 
 
-@app.head("/health")
-def health_head():
+@app.head("/")
+def root_head():
+    # Render requires HEAD / to return 200 for its health check
     return Response(status_code=200)
 
 
 @app.post("/predict")
 def predict(input_data: SurveyInput):
 
-    # Convert Pydantic model → dict → DataFrame
-    input_dict = input_data.dict()
+    # Convert Pydantic model → dictionary
+    # Prefer model_dump() for Pydantic v2; fall back to dict() if v1
+    try:
+        input_dict = input_data.model_dump()
+    except AttributeError:
+        input_dict = input_data.dict()
+
     df = pd.DataFrame([input_dict])
 
-    # Run model
+    # Run the model
     pred = model.predict(df)[0]
     proba = model.predict_proba(df)[0, 1]
 
-    # Format response
+    # Format the response
     return {
         "prediction": int(pred),
         "probability_yes": float(proba),
-        "model": "logistic-regression + preprocessing pipeline"
+        "model": "logistic-regression + preprocessing pipeline",
     }
