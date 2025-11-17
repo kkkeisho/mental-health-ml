@@ -14,11 +14,13 @@ app = FastAPI(
 MODEL_PATH = "models/model.pkl"
 model = joblib.load(MODEL_PATH)
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
 
-@app.get("/")
-def root():
-    return {"message": "Mental Health Prediction API is running"}
-
+@app.head("/health")
+def health_head():
+    return Response(status_code=200)
 
 @app.post("/predict")
 def predict(input_data: SurveyInput):
