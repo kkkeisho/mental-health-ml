@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: ["master"]   # 好きなブランチに変更可
+    branches: ["master"]   
   workflow_dispatch:
 
 permissions:
