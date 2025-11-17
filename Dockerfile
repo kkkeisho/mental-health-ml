@@ -3,17 +3,17 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# 1. 依存関係をインストール
+# 1. Install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 2. アプリコードとモデルファイルをコンテナ内にコピー
+# 2. Copy application code and model artifacts into the container
 COPY api ./api
 COPY models ./models
 
-# 3. コンテナの中で使うポート番号（FastAPI 用）
+# 3. Expose the FastAPI port inside the container
 EXPOSE 8000
 
-# 4. コンテナ起動時に実行するコマンド
-#    api/app.py の app という FastAPI インスタンスを uvicorn で起動
+# 4. Command executed when the container starts
+#    Launch the FastAPI app defined in api/app.py via uvicorn
 CMD ["uvicorn", "api.app:app", "--host", "0.0.0.0", "--port", "8000"]

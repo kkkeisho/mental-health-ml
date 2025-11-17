@@ -18,9 +18,6 @@ through the steps slowly.
   tools we use.
 - About 10–15 minutes for the initial setup.
 
-No prior coding experience is required. Just copy the commands exactly
-as shown.
-
 ---
 
 ## 2. Quick Start (copy & paste)

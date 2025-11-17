@@ -7,4 +7,4 @@ pydantic
 pytest
 mlflow
 flake8
-httpx  # APIテスト用（後で使う）
+httpx  # For future API tests
